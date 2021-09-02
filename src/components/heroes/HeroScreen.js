@@ -3,6 +3,10 @@ import {useParams, Redirect} from "react-router-dom";
 import { getHeroesById } from "../../selectors/getHeroById";
 import "animate.css"
 
+
+const heroImages = require.context("../../assets/heroes",true)
+
+
 export const HeroScreen = ({history}) => {
 
   // extrae los parametros enviados por url mediante el hook
@@ -27,7 +31,7 @@ export const HeroScreen = ({history}) => {
   return (
     <div className="row mt-5">
       <div className="col-4">
-        <img src={process.env.PUBLIC_URL+`/assets/heroes/${heroId}.jpg`} alt={superhero} className="img-thumbnail animate__animated animate__fadeInLeftBig"/>
+        <img src={heroImages(`./${heroId}.jpg`).default} alt={superhero} className="img-thumbnail animate__animated animate__fadeInLeftBig"/>
       </div>
         <div className="col-8">
             <h3>{superhero}</h3>
